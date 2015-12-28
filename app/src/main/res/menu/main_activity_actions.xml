@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/action_colors"
+        android:icon="@drawable/ic_menu_color_palette"
+        android:title="@string/action_settings"
+        android:showAsAction="always" >
+    <menu>
+        <item android:id="@+id/background_green"
+            android:icon="@drawable/ic_green"
+            android:title="@string/Green" />
+        <item android:id="@+id/background_red"
+            android:icon="@drawable/ic_red"
+            android:title="@string/Red" />
+        <item android:id="@+id/background_blue"
+            android:icon="@drawable/ic_blue"
+            android:title="@string/Blue" />
+        <item android:id="@+id/background_white"
+            android:icon="@drawable/ic_white"
+            android:title="@string/White" />
+        <item android:id="@+id/background_gray"
+            android:icon="@drawable/ic_gray"
+            android:title="@string/Gray" />
+    </menu>
+    </item>
+    <item android:id="@+id/action_trackers"
+        android:icon="@drawable/ic_tracker4"
+        android:title=""
+        android:showAsAction="always" />
+
+    <item android:id="@+id/action_trackerSize"
+        android:icon="@drawable/ic_trackersize"
+        android:title=""
+        android:showAsAction="always" >
+    <menu>
+            <item android:id="@+id/action_trackerSizeSmall"
+                android:title="@string/tracker_small" />
+            <item android:id="@+id/action_trackerSizeDefault"
+                android:title="@string/tracker_default" />
+            <item android:id="@+id/action_trackerSizeLarge"
+                android:title="@string/tracker_large" />
+    </menu>
+    </item>
+
+    <item android:id="@+id/action_fingerPath"
+        android:icon="@drawable/ic_action_location_found_on"
+        android:title=""
+        android:showAsAction="always" />
+    <item android:id="@+id/action_settings"
+        android:icon="@drawable/ic_action_settings"
+        android:title=""
+        android:showAsAction="always" >
+    <menu>
+        <item
+            android:id="@+id/default_tracker"
+            android:icon="@drawable/ic_tracker3"
+            android:title="@string/tracker_default" />
+        <item
+            android:id="@+id/circles"
+            android:icon="@drawable/ic_filled_circle"
+            android:title="@string/tracker_circles" />
+        <item
+            android:id="@+id/squares"
+            android:icon="@drawable/ic_filled_square"
+            android:title="@string/tracker_squares" />
+        <item
+            android:id="@+id/right_angles"
+            android:icon="@drawable/ic_filled_angle_rt"
+            android:title="@string/tracker_angles" />
+        <item
+            android:id="@+id/x"
+            android:icon="@drawable/ic_filled_x"
+            android:title="@string/tracker_x" />
+
+    </menu>
+    </item>
+</menu>

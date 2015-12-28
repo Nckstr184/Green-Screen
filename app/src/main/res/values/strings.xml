@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Movie Screen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="action_search"></string>
+    <string name="action_settings"></string>
+    <string name="color_button">Change Background</string>
+    <string name="title_activity_color_picker">ColorPickerActivity</string>
+    <string name="Green">Green</string>
+    <string name="Red">Red</string>
+    <string name="Blue">Blue</string>
+    <string name="White">White</string>
+    <string name="Gray">Gray</string>
+    <string name="tracker_default">Default</string>
+    <string name="tracker_small">Small</string>
+    <string name="tracker_large">Large</string>
+    <string name="tracker_circles">Circles</string>
+    <string name="tracker_squares">Squares</string>
+    <string name="tracker_angles">Right Angles</string>
+    <string name="tracker_x">X\'s</string>
+
+</resources>
