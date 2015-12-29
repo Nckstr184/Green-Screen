@@ -20,5 +20,11 @@
     <string name="tracker_squares">Squares</string>
     <string name="tracker_angles">Right Angles</string>
     <string name="tracker_x">X\'s</string>
+    <string name="screencolor">Screen Color</string>
+    <string name="trackerchange">Change Tracker</string>
+    <string name="trackerSize">Tracker Size</string>
+    <string name="fingerToggle">Toggle Finger Path</string>
+    <string name="trackerTypeChange">Tracker Type</string>
+    <string name="trackerLocationChange">Tracker Location</string>
 
 </resources>

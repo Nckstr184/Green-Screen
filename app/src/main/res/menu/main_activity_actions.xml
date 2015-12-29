@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="schemas.android.com/tools"
+    tools:context="com.targetprops.greenscreen"
+    xmlns:GreenScreen="http://schemas.android.com/apk/res-auto">
+
+
     <item android:id="@+id/action_colors"
         android:icon="@drawable/ic_menu_color_palette"
-        android:title="@string/action_settings"
+        android:title="@string/screencolor"
         android:showAsAction="always" >
     <menu>
         <item android:id="@+id/background_green"
@@ -24,12 +29,12 @@
     </item>
     <item android:id="@+id/action_trackers"
         android:icon="@drawable/ic_tracker4"
-        android:title=""
+        android:title="@string/trackerLocationChange"
         android:showAsAction="always" />
 
     <item android:id="@+id/action_trackerSize"
         android:icon="@drawable/ic_trackersize"
-        android:title=""
+        android:title="@string/trackerSize"
         android:showAsAction="always" >
     <menu>
             <item android:id="@+id/action_trackerSizeSmall"
@@ -43,11 +48,11 @@
 
     <item android:id="@+id/action_fingerPath"
         android:icon="@drawable/ic_action_location_found_on"
-        android:title=""
+        android:title="@string/fingerToggle"
         android:showAsAction="always" />
     <item android:id="@+id/action_settings"
         android:icon="@drawable/ic_action_settings"
-        android:title=""
+        android:title="@string/trackerTypeChange"
         android:showAsAction="always" >
     <menu>
         <item

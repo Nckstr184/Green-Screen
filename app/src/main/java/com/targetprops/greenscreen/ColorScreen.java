@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -138,16 +140,15 @@ public class ColorScreen extends Activity /*implements ColorPicker.OnColorChange
         });*/
 
 
-
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-       // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-        imageViewRT = (ImageView)findViewById(R.id.imageView);
-        imageViewLT = (ImageView)findViewById(R.id.imageView2);
-        imageViewLB = (ImageView)findViewById(R.id.imageView3);
-        imageViewRB = (ImageView)findViewById(R.id.imageView4);
-        imageViewC = (ImageView)findViewById(R.id.imageView5);
+        // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        imageViewRT = (ImageView) findViewById(R.id.imageView);
+        imageViewLT = (ImageView) findViewById(R.id.imageView2);
+        imageViewLB = (ImageView) findViewById(R.id.imageView3);
+        imageViewRB = (ImageView) findViewById(R.id.imageView4);
+        imageViewC = (ImageView) findViewById(R.id.imageView5);
 
         imageViewRT.setImageResource(R.drawable.ic_tracker3);
         imageViewLT.setImageResource(R.drawable.ic_tracker3);
@@ -166,6 +167,11 @@ public class ColorScreen extends Activity /*implements ColorPicker.OnColorChange
         // removes the title from action bar
         // getActionBar().setDisplayShowTitleEnabled(false);
 
+        View mDecorView = getWindow().getDecorView();
+        mDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
     @Override
@@ -175,6 +181,8 @@ public class ColorScreen extends Activity /*implements ColorPicker.OnColorChange
         inflater.inflate(R.menu.main_activity_actions, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+
 
     //FrameLayout.LayoutParams smallParams = new FrameLayout.LayoutParams(dpToPx(48), dpToPx(48));
     //FrameLayout.LayoutParams defaultParams = new FrameLayout.LayoutParams(dpToPx(64), dpToPx(64));
