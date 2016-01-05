@@ -6,6 +6,8 @@ import android.support.test.InstrumentationRegistry;
 import android.support.v4.content.ContextCompat;
 import android.test.ActivityInstrumentationTestCase2;
 
+import static org.hamcrest.core.IsNot.not;
+import static org.mockito.Mockito.*;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.doubleClick;
@@ -44,7 +46,7 @@ public class GreenScreenEspressoTest extends ActivityInstrumentationTestCase2<Co
      * level
      */
     public void testTogglePenColorBlue() {
-        // Makes sure that the Color change button is displayed
+        // Makes sure that the Color change button is displayed when available
         onView(withId(R.id.action_colors)).check(matches(isDisplayed()));
 
         // Clicks the Color change button option in the action bar
@@ -66,18 +68,18 @@ public class GreenScreenEspressoTest extends ActivityInstrumentationTestCase2<Co
      * trackers in the corners only
      */
     public void testTrackerLocationCorners() {
-        // Waits until the toggle tracker option is displayed
+        // Waits until the toggle tracker option is displayed and available
         onView(withId(R.id.action_trackers)).check(matches(isDisplayed()));
 
         // Performs a single click on the toggle tracker option
         onView(withId(R.id.action_trackers)).perform(click());
 
         // Multiple assertions to check that the proper trackers are visible
-        assertTrue(mActivity.imageViewLT.isShown());
-        assertTrue(mActivity.imageViewRT.isShown());
-        assertTrue(mActivity.imageViewLB.isShown());
-        assertTrue(mActivity.imageViewRB.isShown());
-        assertFalse(mActivity.imageViewC.isShown());
+        onView(withId(R.id.imageView)).check(matches(isDisplayed())); // Right Top
+        onView(withId(R.id.imageView2)).check(matches(isDisplayed())); // Left Top
+        onView(withId(R.id.imageView3)).check(matches(isDisplayed())); // Left Bottom
+        onView(withId(R.id.imageView4)).check(matches(isDisplayed())); // Right Bottom
+        onView(withId(R.id.imageView5)).check(matches(not(isDisplayed()))); // Center
     }
 
     /*
@@ -85,18 +87,18 @@ public class GreenScreenEspressoTest extends ActivityInstrumentationTestCase2<Co
      * trackers in all available positions (corners and center)
      */
     public void testTrackerLocationAll() {
-        // Waits until the toggle tracker option is displayed
+        // Waits until the toggle tracker option is displayed and available
         onView(withId(R.id.action_trackers)).check(matches(isDisplayed()));
 
         // Performs a double click on the toggle tracker option
         onView(withId(R.id.action_trackers)).perform(doubleClick());
 
         // Multiple assertions to check that the proper trackers are visible
-        assertTrue(mActivity.imageViewLT.isShown());
-        assertTrue(mActivity.imageViewRT.isShown());
-        assertTrue(mActivity.imageViewLB.isShown());
-        assertTrue(mActivity.imageViewRB.isShown());
-        assertTrue(mActivity.imageViewC.isShown());
+        onView(withId(R.id.imageView)).check(matches(isDisplayed())); // Right Top
+        onView(withId(R.id.imageView2)).check(matches(isDisplayed())); // Left Top
+        onView(withId(R.id.imageView3)).check(matches(isDisplayed())); // Left Bottom
+        onView(withId(R.id.imageView4)).check(matches(isDisplayed())); // Right Bottom
+        onView(withId(R.id.imageView5)).check(matches(isDisplayed())); // Center
     }
 
     /*
@@ -104,7 +106,7 @@ public class GreenScreenEspressoTest extends ActivityInstrumentationTestCase2<Co
      * all trackers from all positions
      */
     public void testTrackerLocationNone() {
-        // Waits until the toggle tracker option is displayed
+        // Waits until the toggle tracker option is displayed and available
         onView(withId(R.id.action_trackers)).check(matches(isDisplayed()));
 
         // Performs a double and then a single click on the toggle tracker option
@@ -113,10 +115,67 @@ public class GreenScreenEspressoTest extends ActivityInstrumentationTestCase2<Co
         onView(withId(R.id.action_trackers)).perform(click());
 
         // Multiple assertions to check that the proper trackers are visible
-        assertFalse(mActivity.imageViewLT.isShown());
-        assertFalse(mActivity.imageViewRT.isShown());
-        assertFalse(mActivity.imageViewLB.isShown());
-        assertFalse(mActivity.imageViewRB.isShown());
-        assertFalse(mActivity.imageViewC.isShown());
+        onView(withId(R.id.imageView)).check(matches(not(isDisplayed()))); // Right Top
+        onView(withId(R.id.imageView2)).check(matches(not(isDisplayed()))); // Left Top
+        onView(withId(R.id.imageView3)).check(matches(not(isDisplayed()))); // Left Bottom
+        onView(withId(R.id.imageView4)).check(matches(not(isDisplayed()))); // Right Bottom
+        onView(withId(R.id.imageView5)).check(matches(not(isDisplayed()))); // Center
+    }
+
+    public void testTrackerSizeChange() {
+        // Toggle tracker location to display all
+        onView(withId(R.id.action_trackers)).check(matches(isDisplayed()));
+        onView(withId(R.id.action_trackers)).perform(doubleClick());
+
+        // Check if displayed properly
+        onView(withId(R.id.action_trackerSize)).check(matches(isDisplayed()));
+
+        // Toggle to small
+        onView(withId(R.id.action_trackerSize)).perform(click());
+        onView(withText("Small")).perform(click());
+
+        assertEquals(mActivity.imageViewLT.getLayoutParams().height, mActivity.dpToPx(48));
+        assertEquals(mActivity.imageViewRT.getLayoutParams().height, mActivity.dpToPx(48));
+        assertEquals(mActivity.imageViewRB.getLayoutParams().height, mActivity.dpToPx(48));
+        assertEquals(mActivity.imageViewLB.getLayoutParams().height, mActivity.dpToPx(48));
+        assertEquals(mActivity.imageViewC.getLayoutParams().height, mActivity.dpToPx(48));
+
+        assertEquals(mActivity.imageViewLT.getLayoutParams().width, mActivity.dpToPx(48));
+        assertEquals(mActivity.imageViewRT.getLayoutParams().width, mActivity.dpToPx(48));
+        assertEquals(mActivity.imageViewRB.getLayoutParams().width, mActivity.dpToPx(48));
+        assertEquals(mActivity.imageViewLB.getLayoutParams().width, mActivity.dpToPx(48));
+        assertEquals(mActivity.imageViewC.getLayoutParams().width, mActivity.dpToPx(48));
+
+        // Toggle to default
+        onView(withId(R.id.action_trackerSize)).perform(click());
+        onView(withText("Default")).perform(click());
+
+        assertEquals(mActivity.imageViewLT.getLayoutParams().height, mActivity.dpToPx(64));
+        assertEquals(mActivity.imageViewRT.getLayoutParams().height, mActivity.dpToPx(64));
+        assertEquals(mActivity.imageViewRB.getLayoutParams().height, mActivity.dpToPx(64));
+        assertEquals(mActivity.imageViewLB.getLayoutParams().height, mActivity.dpToPx(64));
+        assertEquals(mActivity.imageViewC.getLayoutParams().height, mActivity.dpToPx(64));
+
+        assertEquals(mActivity.imageViewLT.getLayoutParams().width, mActivity.dpToPx(64));
+        assertEquals(mActivity.imageViewRT.getLayoutParams().width, mActivity.dpToPx(64));
+        assertEquals(mActivity.imageViewRB.getLayoutParams().width, mActivity.dpToPx(64));
+        assertEquals(mActivity.imageViewLB.getLayoutParams().width, mActivity.dpToPx(64));
+        assertEquals(mActivity.imageViewC.getLayoutParams().width, mActivity.dpToPx(64));
+
+        // Toggle to large
+        onView(withId(R.id.action_trackerSize)).perform(click());
+        onView(withText("Large")).perform(click());
+
+        assertEquals(mActivity.imageViewLT.getLayoutParams().height, mActivity.dpToPx(96));
+        assertEquals(mActivity.imageViewRT.getLayoutParams().height, mActivity.dpToPx(96));
+        assertEquals(mActivity.imageViewRB.getLayoutParams().height, mActivity.dpToPx(96));
+        assertEquals(mActivity.imageViewLB.getLayoutParams().height, mActivity.dpToPx(96));
+        assertEquals(mActivity.imageViewC.getLayoutParams().height, mActivity.dpToPx(96));
+
+        assertEquals(mActivity.imageViewLT.getLayoutParams().width, mActivity.dpToPx(96));
+        assertEquals(mActivity.imageViewRT.getLayoutParams().width, mActivity.dpToPx(96));
+        assertEquals(mActivity.imageViewRB.getLayoutParams().width, mActivity.dpToPx(96));
+        assertEquals(mActivity.imageViewLB.getLayoutParams().width, mActivity.dpToPx(96));
+        assertEquals(mActivity.imageViewC.getLayoutParams().width, mActivity.dpToPx(96));
     }
 }
