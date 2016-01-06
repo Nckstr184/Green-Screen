@@ -122,6 +122,11 @@ public class GreenScreenEspressoTest extends ActivityInstrumentationTestCase2<Co
         onView(withId(R.id.imageView5)).check(matches(not(isDisplayed()))); // Center
     }
 
+    /*
+     * Goes through the list of tracker size options one by one and checks
+     * to make sure that the height and width are the correct respective
+     * size
+     */
     public void testTrackerSizeChange() {
         // Toggle tracker location to display all
         onView(withId(R.id.action_trackers)).check(matches(isDisplayed()));
