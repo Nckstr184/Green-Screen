@@ -183,4 +183,68 @@ public class GreenScreenEspressoTest extends ActivityInstrumentationTestCase2<Co
         assertEquals(mActivity.imageViewLB.getLayoutParams().width, mActivity.dpToPx(96));
         assertEquals(mActivity.imageViewC.getLayoutParams().width, mActivity.dpToPx(96));
     }
+
+    /*
+     * Go through the list of tracker type options and check to make sure
+     * that it changes the tracker correctly.
+     */
+    public void testTrackerTypeChange() {
+        // Check that the tracker toggle option is displayed and display
+        // all the trackers
+        onView(withId(R.id.action_trackers)).check(matches(isDisplayed()));
+        onView(withId(R.id.action_trackers)).perform(doubleClick());
+
+        // Checks that the settings option is displayed
+        onView(withId(R.id.action_settings)).check(matches(isDisplayed()));
+
+        // Test circles
+        onView(withId(R.id.action_settings)).perform(click());
+        onView(withText("Circles")).perform(click());
+
+        assertTrue(mActivity.imageViewLT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_circle).getConstantState()));
+        assertTrue(mActivity.imageViewRT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_circle).getConstantState()));
+        assertTrue(mActivity.imageViewRB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_circle).getConstantState()));
+        assertTrue(mActivity.imageViewLB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_circle).getConstantState()));
+        assertTrue(mActivity.imageViewC.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_circle).getConstantState()));
+
+        // Test squares
+        onView(withId(R.id.action_settings)).perform(click());
+        onView(withText("Squares")).perform(click());
+
+        assertTrue(mActivity.imageViewLT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_square).getConstantState()));
+        assertTrue(mActivity.imageViewRT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_square).getConstantState()));
+        assertTrue(mActivity.imageViewRB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_square).getConstantState()));
+        assertTrue(mActivity.imageViewLB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_square).getConstantState()));
+        assertTrue(mActivity.imageViewC.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_square).getConstantState()));
+
+        // Test right angles
+        onView(withId(R.id.action_settings)).perform(click());
+        onView(withText("Right Angles")).perform(click());
+
+        assertTrue(mActivity.imageViewLT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_angle_lt).getConstantState()));
+        assertTrue(mActivity.imageViewRT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_angle_rt).getConstantState()));
+        assertTrue(mActivity.imageViewRB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_angle_rb).getConstantState()));
+        assertTrue(mActivity.imageViewLB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_angle_lb).getConstantState()));
+        assertTrue(mActivity.imageViewC.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_x).getConstantState()));
+
+        // Test x's
+        onView(withId(R.id.action_settings)).perform(click());
+        onView(withText("X's")).perform(click());
+
+        assertTrue(mActivity.imageViewLT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_x).getConstantState()));
+        assertTrue(mActivity.imageViewRT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_x).getConstantState()));
+        assertTrue(mActivity.imageViewRB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_x).getConstantState()));
+        assertTrue(mActivity.imageViewLB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_x).getConstantState()));
+        assertTrue(mActivity.imageViewC.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_filled_x).getConstantState()));
+
+        // Test default
+        onView(withId(R.id.action_settings)).perform(click());
+        onView(withText("Default")).perform(click());
+
+        assertTrue(mActivity.imageViewLT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_tracker3).getConstantState()));
+        assertTrue(mActivity.imageViewRT.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_tracker3).getConstantState()));
+        assertTrue(mActivity.imageViewRB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_tracker3).getConstantState()));
+        assertTrue(mActivity.imageViewLB.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_tracker3).getConstantState()));
+        assertTrue(mActivity.imageViewC.getDrawable().getConstantState().equals(mActivity.getResources().getDrawable(R.drawable.ic_tracker3).getConstantState()));
+    }
 }
